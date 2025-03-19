@@ -1,0 +1,30 @@
+name: Run Python Script
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 푸시할 때 실행
+  pull_request:
+    branches:
+      - main  # main 브랜치에 PR을 생성할 때 실행
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest  # 실행할 환경
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'  # 원하는 Python 버전
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt  # 필요 패키지 설치 (필요 시)
+
+    - name: Run script
+      run: |
+        python haha.py  # 스크립트 실행
